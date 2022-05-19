@@ -1,11 +1,5 @@
 import "./style.css";
+import UI from "./display.js";
+import "./style.css";
 
-function component() {
-  const element = document.createElement("div");
-
-  element.innerHTML = "Hello webpack";
-  element.classList.add("hello");
-  return element;
-}
-
-document.body.appendChild(component());
+document.addEventListener("DOMContentLoaded", UI.loadHomepage);
