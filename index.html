@@ -1,9 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer src="index.bundle.js"></script></head>
+    <link rel="shortcut icon" href="images/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Yusei+Magic&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/2ed7e3a78c.js"
+      crossorigin="anonymous"
+    ></script>
+  <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
   <body>
+    <header class="header">
+      <div class="logo">
+        <i class="fa-brands fa-apple"></i>
+        <h1 class="page-name">iDo</h1>
+      </div>
+      <button class="button-open-nav" id="button-open-nav">
+        <i class="fa-solid fa-list-ul"></i>
+      </button>
+    </header>
+    <main class="main">
+      <nav class="nav" id="nav">
+        <!-- Default projects -->
+        <div class="default-projects-list">
+          <button class="nav-button nav-tasks" id="button-inbox-projects">
+            <i class="fa-solid fa-pencil"></i>
+            Tasks
+          </button>
+          <button class="nav-button nav-day" id="button-today-projects">
+            <i class="fa-solid fa-sun"></i>
+            My Day
+          </button>
+          <button class="nav-button nav-week" id="button-week-projects">
+            <i class="fa-solid fa-calendar-week"></i>
+            This week
+          </button>
+        </div>
+        <!-- User projects -->
+        <h1 class="projects-title">Projects</h1>
+        <div class="projects-list" id="projects-list"></div>
+        <button class="button-add-project" id="button-add-project">
+          <i class="fas fa-plus"></i>
+          Add Project
+        </button>
+        <div class="add-project-popup" id="add-project-popup">
+          <input
+            class="input-add-project-popup"
+            id="input-add-project-popup"
+            type="text"
+          />
+          <div class="add-project-popup-buttons">
+            <button
+              class="button-add-project-popup"
+              id="button-add-project-popup"
+            >
+              Add
+            </button>
+            <button
+              class="button-cancel-project-popup"
+              id="button-cancel-project-popup"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </nav>
+      <!-- Tasks -->
+      <div class="project-preview" id="project-preview"></div>
+    </main>
+    <!-- <footer class="footer">
+      <p>Copyright © 2021 michalosman</p>
+      <a href="https://github.com/michalosman" target="_blank">
+        <i class="fab fa-github"></i
+      ></a>
+    </footer> -->
   </body>
 </html>
