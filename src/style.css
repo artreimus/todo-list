@@ -37,7 +37,7 @@ input {
   outline: none;
 }
 
-button {
+.button {
   width: 100%;
   padding: 10px 20px;
   border-radius: 5px;
@@ -45,7 +45,7 @@ button {
 }
 
 input {
-  width: 100%;
+  /* width: 100%; */
   padding: 10px;
   border-radius: 5px;
 }
@@ -69,15 +69,17 @@ i {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 1rem;
 }
 
-.fa-check-double {
+.fa-apple {
   font-size: 40px;
 }
 
 .page-name {
-  font-family: "Yusei Magic", sans-serif;
-  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
 }
 
 .button-open-nav {
@@ -109,6 +111,55 @@ i {
 
 .nav.active {
   display: block;
+}
+
+.task-list {
+  font-size: inherit;
+  list-style: none;
+}
+
+.task-list > .list-name {
+  width: 100%;
+  height: 3rem;
+  background-color: greenyellow;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.task-list > .list-name:hover {
+  opacity: 0.8;
+}
+
+.task-list > .list-name.active-list {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.new-container {
+  padding: 0px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.new.list {
+  background-color: transparent;
+  width: 90%;
+  height: 3rem;
+  padding: 10px 20px;
+  transition: border 250ms ease-in;
+}
+
+.btn.create {
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: opacity 250ms ease-in;
+}
+
+.btn.create:hover {
+  opacity: 0.8;
 }
 
 .button-default-project {
@@ -263,9 +314,46 @@ i {
   );
 }
 
+.project-header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-title {
+  font-size: 3rem;
+  margin: 0 2rem 0 0;
+}
+
+.project-count {
+  font-size: 1rem;
+  /* margin-left: calc(3rem + 20px); */
+  opacity: 0.5;
+  /* color: rgba(0, 0, 0, 0.514); */
+  margin-right: calc(3rem + 10px);
+}
+
 .project-preview h1 {
   padding: 0 10px;
   margin-bottom: 10px;
+}
+
+.delete-stuff {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around; */
+  gap: 1rem;
+}
+
+.btn.delete {
+  padding: 10px;
+  color: rgba(99, 99, 99, 0.81);
+  transition: color 250ms ease-in;
+}
+
+.btn.delete:hover {
+  color: rgba(255, 0, 0, 0.81);
 }
 
 .button-task {
@@ -409,6 +497,101 @@ i {
 
 .button-cancel-task-popup:hover {
   background-color: #f5b2b2;
+}
+
+[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.project {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.project label {
+  position: relative;
+}
+
+.project label {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.project label::after {
+  content: "";
+  position: absolute;
+  left: 2rem;
+  right: 0;
+  height: 3px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease-in-out;
+}
+
+.btn {
+  cursor: pointer;
+  background: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.custom-checkbox {
+  --size: 1em;
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 50%;
+  margin-right: var(--size);
+  transform: scale(1);
+  transition: transform 250ms ease-in-out;
+}
+
+.project:hover .custom-checkbox {
+  transform: scale(1.1);
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+  background-color: rgba(255, 147, 147, 0.81);
+  border-color: rgba(255, 147, 147, 0.81);
+  box-shadow: inset 0 0 0 1.5px white;
+}
+
+[type="checkbox"]:checked + label {
+  opacity: 0.7;
+}
+
+[type="checkbox"]:checked + label::after {
+  opacity: 0.7;
+  transform: scaleX(1);
+}
+.new-task-creator {
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 0px 20px;
+}
+
+.new-task-creator form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.new.task {
+  background-color: transparent;
+  width: 100%;
+  height: 3rem;
+  transition: border 250ms ease-in;
+  display: inline-block;
 }
 
 /* Footer */
