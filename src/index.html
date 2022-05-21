@@ -9,6 +9,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <!-- Header -->
@@ -25,27 +26,29 @@
     <main class="main">
       <!-- Nav Bar -->
       <nav class="nav" id="nav">
-          <ul class="task-list">
-            <li class="list-name active-list nav-tasks">
-              <i class="fa-solid fa-pencil"></i>
-              Tasks
-            </li>
-            <li class="list-name nav-day">
-              <i class="fa-solid fa-sun"></i>
-              My Day
-            </li>
-            <li class="list-name nav-week">
-              <i class="fa-solid fa-calendar-week"></i>
-              My Week
-            </li>
-          </ul>
-        </div>
+        <ul class="project-list">
+          <li class="list-name active-list nav-tasks">
+            <i class="fa-solid fa-pencil"></i>
+            Tasks
+          </li>
+          <li class="list-name nav-day">
+            <i class="fa-solid fa-sun"></i>
+            My Day
+          </li>
+          <li class="list-name nav-week">
+            <i class="fa-solid fa-calendar-week"></i>
+            My Week
+          </li>
+        </ul>
+
         <!-- User projects -->
         <div class="divider"></div>
-        <form action="" class="new-container">
+        <ul class="user-project-list" data-list></ul>
+        <form action="" class="new-project-container" data-new-project-form>
           <input
             type="text"
             class="new list"
+            data-new-project-input
             placeholder="New list name"
             aria-label="New list name"
           />
@@ -99,7 +102,9 @@
             <!-- Delete buttons-->
             <div class="delete-stuff">
               <button class="btn delete">Clear completed tasks</button>
-              <button class="btn delete">Delete list</button>
+              <button class="btn delete" data-delete-list-button>
+                Delete list
+              </button>
             </div>
           </div>
         </div>
