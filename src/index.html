@@ -9,7 +9,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="script.js" defer></script>
+    <script type="module" src="index.js" defer></script>
   </head>
   <body>
     <!-- Header -->
@@ -27,15 +27,15 @@
       <!-- Nav Bar -->
       <nav class="nav" id="nav">
         <ul class="project-list" data-default-projects>
-          <li class="list-name active-list nav-tasks">
+          <li class="list-name active-list nav-tasks" id="tasks-default">
             <i class="fa-solid fa-pencil"></i>
             Tasks
           </li>
-          <li class="list-name nav-day">
+          <li class="list-name nav-day" id="tasks-day">
             <i class="fa-solid fa-sun"></i>
             My Day
           </li>
-          <li class="list-name nav-week">
+          <li class="list-name nav-week" id="tasks-week">
             <i class="fa-solid fa-calendar-week"></i>
             My Week
           </li>
@@ -59,8 +59,8 @@
       <div class="project-preview" id="project-preview" data-project-preview>
         <!-- Project Header -->
         <div class="project-header" data-project-header>
-          <h2 class="project-title" data-project-title>Tasks</h2>
-          <p class="project-count" data-project-count>Remaining Task: 3</p>
+          <h2 class="project-title" data-project-title></h2>
+          <p class="project-count" data-project-count></p>
         </div>
         <!-- Project Body -->
         <div class="project-body" data-project-body>
