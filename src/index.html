@@ -9,7 +9,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js" defer></script>
   </head>
   <body>
     <!-- Header -->
@@ -26,7 +26,7 @@
     <main class="main">
       <!-- Nav Bar -->
       <nav class="nav" id="nav">
-        <ul class="project-list">
+        <ul class="project-list" data-default-projects>
           <li class="list-name active-list nav-tasks">
             <i class="fa-solid fa-pencil"></i>
             Tasks
@@ -43,7 +43,7 @@
 
         <!-- User projects -->
         <div class="divider"></div>
-        <ul class="user-project-list" data-list></ul>
+        <ul class="user-project-list" data-user-projects></ul>
         <form action="" class="new-project-container" data-new-project-form>
           <input
             type="text"
@@ -56,59 +56,49 @@
         </form>
       </nav>
       <!-- Tasks / Project View -->
-      <div class="project-preview" id="project-preview">
+      <div class="project-preview" id="project-preview" data-project-preview>
         <!-- Project Header -->
-        <div class="project-header">
-          <h2 class="project-title">Tasks</h2>
-          <p class="project-count">Remaining Task: 0</p>
+        <div class="project-header" data-project-header>
+          <h2 class="project-title" data-project-title>Tasks</h2>
+          <p class="project-count" data-project-count>Remaining Task: 3</p>
         </div>
         <!-- Project Body -->
-        <div class="project-body">
-          <div class="projects">
-            <div class="project">
-              <input type="checkbox" id="task-1" />
-              <label for="task-1" class="task">
-                <span class="custom-checkbox"></span>
-                Buy chicken
-              </label>
-            </div>
-            <div class="project">
-              <input type="checkbox" id="task-2" />
-              <label for="task-2" class="task">
-                <span class="custom-checkbox"></span>
-                Prepare chicken
-              </label>
-            </div>
-            <div class="project" class="task">
-              <input type="checkbox" id="task-3" />
-              <label for="task-3" class="task">
-                <span class="custom-checkbox"></span>
-                Cook chicken
-              </label>
-            </div>
-            <div class="new-task-creator">
-              <form action="">
-                <input
-                  type="text"
-                  class="new task"
-                  placeholder="New Task"
-                  aria-label="new task name"
-                />
-                <button class="btn create" aria-label="create new task">
-                  +
-                </button>
-              </form>
-            </div>
-            <!-- Delete buttons-->
-            <div class="delete-stuff">
-              <button class="btn delete">Clear completed tasks</button>
-              <button class="btn delete" data-delete-list-button>
-                Delete list
-              </button>
-            </div>
-          </div>
+        <div class="project-body" data-project-body>
+          <!-- change to task instead of project  -->
+          <div class="projects" data-tasks></div>
+        </div>
+        <!-- Input Creator -->
+        <div class="new-task-creator" data-new-task-form>
+          <form action="">
+            <input
+              type="text"
+              class="new task"
+              data-new-task-input
+              placeholder="New Task"
+              aria-label="new task name"
+            />
+            <button class="btn create" aria-label="create new task">+</button>
+          </form>
+        </div>
+        <!-- Delete buttons-->
+        <div class="delete-stuff" data-project-delete-container>
+          <button class="btn delete" data-clear-complete-tasks>
+            Clear completed tasks
+          </button>
+          <button class="btn delete" data-delete-list-button>
+            Delete list
+          </button>
         </div>
       </div>
     </main>
+
+    <template id="task-template">
+      <div class="project" class="task">
+        <input type="checkbox" />
+        <label class="task">
+          <span class="custom-checkbox"></span>
+        </label>
+      </div>
+    </template>
   </body>
 </html>
