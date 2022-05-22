@@ -18,13 +18,11 @@ export function renderProjectList(projects, selectedProjectId) {
     const projectElement = document.createElement("li");
     projectElement.dataset.listId = project.id;
     projectElement.classList.add("list-name");
-    const projectIcon = document.createElement("i");
-    projectIcon.classList.add("fa-solid", "fa-pencil");
 
     if (project.id === selectedProjectId) {
       projectElement.classList.add("active-list");
     }
-    projectElement.innerHTML = `<i class="fa-solid fa-pencil"></i> ${project.name}`;
+    projectElement.innerHTML = `<i class="fa-solid fa-bars"></i> ${project.name}`;
     projectsContainer.appendChild(projectElement);
   });
 }
