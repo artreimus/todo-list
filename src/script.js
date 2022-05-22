@@ -4,30 +4,31 @@ import {
   saveLocalStorage,
 } from "./storage.js";
 
-const projectsContainer = document.querySelector("[data-user-projects]");
-const newProjectForm = document.querySelector("[data-new-project-form]");
-const newProjectInput = document.querySelector("[data-new-project-input]");
-const projectHeader = document.querySelector("[data-project-header]");
-const projectTitle = document.querySelector("[data-project-title]");
-const projectRemainingTask = document.querySelector("[data-project-count]");
-const tasksContainer = document.querySelector("[data-project-body]");
-const newTaskForm = document.querySelector("[data-new-task-form]");
-const newTaskInput = document.querySelector("[data-new-task-input]");
-const projectDeleteContainer = document.querySelector(
-  "[data-project-delete-container]"
-);
-const deleteProjectButton = document.querySelector("[data-delete-list-button]");
-const clearCompleteTasksButton = document.querySelector(
-  "[data-clear-complete-tasks]"
-);
-const projectPreviewContainer = document.querySelector(
-  "[data-project-preview]"
-);
+import {
+  projectsContainer,
+  newProjectForm,
+  newProjectInput,
+  createProject,
+  renderProjectList,
+} from "./userProject.js";
 
-const newTaskTemplate = document.getElementById("task-template");
+import {
+  projectHeader,
+  tasksContainer,
+  newTaskForm,
+  newTaskInput,
+  createTask,
+  renderProjectHeader,
+  renderRemainingTask,
+  renderTasks,
+} from "./projectTasks.js";
 
-// const LOCAL_STORAGE_PROJECT_KEY = "task.projects";
-// const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "task.selectedProjectId";
+import {
+  projectDeleteContainer,
+  deleteProjectButton,
+  clearCompleteTasksButton,
+} from "./delete.js";
+
 let projects =
   JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
 let selectedProjectId = localStorage.getItem(
@@ -94,22 +95,6 @@ deleteProjectButton.addEventListener("click", (e) => {
   saveAndRender();
 });
 
-function createProject(name) {
-  return {
-    id: Date.now().toString(),
-    name: name,
-    tasks: [],
-  };
-}
-
-function createTask(name) {
-  return {
-    id: Date.now().toString(),
-    name: name,
-    complete: false,
-  };
-}
-
 function saveAndRender() {
   saveLocalStorage(projects, selectedProjectId);
   render();
@@ -120,7 +105,7 @@ function render() {
     (project) => project.id === selectedProjectId
   );
   clearElement(projectsContainer);
-  renderProjectList();
+  renderProjectList(projects, selectedProjectId);
 
   if (selectedProjectId === null) {
     projectHeader.style.display = "none";
@@ -137,51 +122,6 @@ function render() {
     clearElement(tasksContainer);
     renderTasks(selectedProject);
   }
-}
-
-function renderProjectHeader(selectedProject) {
-  renderProjectTitle(selectedProject);
-  renderRemainingTask(selectedProject);
-}
-
-function renderProjectTitle(selectedProject) {
-  projectTitle.innerText = selectedProject.name;
-}
-
-function renderRemainingTask(selectedProject) {
-  const incompleteTaskCount = selectedProject.tasks.filter(
-    (task) => !task.complete
-  ).length;
-  const taskString = incompleteTaskCount === 1 ? "task" : "tasks";
-  projectRemainingTask.innerText = `Remaining ${taskString}: ${incompleteTaskCount}`;
-}
-
-function renderTasks(selectedProject) {
-  selectedProject.tasks.forEach((task) => {
-    const taskElement = document.importNode(newTaskTemplate.content, true);
-    const checkBox = taskElement.querySelector("input");
-    console.log(checkBox);
-    checkBox.id = task.id;
-    checkBox.checked = task.complete;
-    const label = taskElement.querySelector("label");
-    label.htmlFor = task.id;
-    label.append(task.name);
-    tasksContainer.appendChild(taskElement);
-  });
-}
-
-function renderProjectList() {
-  clearElement(projectsContainer);
-  projects.forEach((project) => {
-    const projectElement = document.createElement("li");
-    projectElement.dataset.listId = project.id;
-    projectElement.classList.add("list-name");
-    projectElement.innerText = project.name;
-    if (project.id === selectedProjectId) {
-      projectElement.classList.add("active-list");
-    }
-    projectsContainer.appendChild(projectElement);
-  });
 }
 
 function clearElement(element) {
