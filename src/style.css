@@ -56,7 +56,7 @@ i {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 0 0 20px;
   color: var(--primary-dark);
 }
 
@@ -314,6 +314,7 @@ i {
 }
 
 .new-task-creator {
+  display: block;
   border-radius: 5px;
   border: 2px solid black;
   padding: 0px 20px;
@@ -356,11 +357,16 @@ i {
 
 /*  Delete Buttons */
 .delete-stuff {
+  /* display: none; */
   display: flex;
+
   align-items: center;
   gap: 1rem;
 }
 
+.delete-stuff.show {
+  display: block;
+}
 .btn.delete {
   padding: 10px;
   color: rgba(99, 99, 99, 0.81);
@@ -369,6 +375,10 @@ i {
 
 .btn.delete:hover {
   color: rgba(255, 0, 0, 1);
+}
+
+.none {
+  display: none;
 }
 
 /* Media queries */
@@ -380,6 +390,7 @@ i {
 
   .main {
     flex-direction: column;
+    background-color: black;
   }
 
   .nav {

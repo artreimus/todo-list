@@ -9,6 +9,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
+    <!-- <script type="module" src="index.js" defer></script> -->
     <script type="module" src="index.js" defer></script>
   </head>
   <body>
@@ -26,20 +27,7 @@
     <main class="main">
       <!-- Nav Bar -->
       <nav class="nav" id="nav">
-        <ul class="project-list" data-default-projects>
-          <li class="list-name active-list nav-tasks" id="tasks-default">
-            <i class="fa-solid fa-pencil"></i>
-            Tasks
-          </li>
-          <li class="list-name nav-day" id="tasks-day">
-            <i class="fa-solid fa-sun"></i>
-            My Day
-          </li>
-          <li class="list-name nav-week" id="tasks-week">
-            <i class="fa-solid fa-calendar-week"></i>
-            My Week
-          </li>
-        </ul>
+        <ul class="project-list" data-default-projects></ul>
 
         <!-- User projects -->
         <div class="divider"></div>
@@ -65,10 +53,10 @@
         <!-- Project Body -->
         <div class="project-body" data-project-body>
           <!-- change to task instead of project  -->
-          <div class="projects" data-tasks></div>
+          <div class="task" data-tasks></div>
         </div>
         <!-- Input Creator -->
-        <div class="new-task-creator" data-new-task-form>
+        <div class="new-task-creator none" data-new-task-form>
           <form action="">
             <input
               type="text"
@@ -81,7 +69,7 @@
           </form>
         </div>
         <!-- Delete buttons-->
-        <div class="delete-stuff" data-project-delete-container>
+        <div class="delete-stuff none" data-project-delete-container>
           <button class="btn delete" data-clear-complete-tasks>
             Clear completed tasks
           </button>

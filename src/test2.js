@@ -1,6 +1,7 @@
 import {
   LOCAL_STORAGE_PROJECT_KEY,
   LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY,
+  LOCAL_STORAGE_DEFAULT_PROJECT_KEY,
   saveLocalStorage,
 } from "./storage.js";
 
@@ -22,12 +23,20 @@ import {
   renderTasks,
 } from "./projectTasks.js";
 
+import {
+  defaultProjectsContainer,
+  loadDefaultProjects,
+  renderDefaultProjects,
+} from "./defaultProject.js";
+
 import { deleteProjectButton, clearCompleteTasksButton } from "./delete.js";
 
 import { displayElement, clearElement } from "./element.js";
 
 let projects =
   JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
+let defaultProjects =
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_DEFAULT_PROJECT_KEY)) || [];
 let selectedProjectId = localStorage.getItem(
   LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY
 );
@@ -49,14 +58,13 @@ export function renderEverything() {
 
   tasksContainer.addEventListener("click", (e) => {
     if (e.target.tagName.toLowerCase() === "input") {
-      const selectedProject = projects.find(
-        (project) => project.id === selectedProjectId
-      );
+      let selectedProject = selectedArray();
+
       const selectedTask = selectedProject.tasks.find(
         (task) => task.id === e.target.id
       );
       selectedTask.complete = e.target.checked;
-      saveLocalStorage(projects, selectedProjectId);
+      saveLocalStorage(projects, selectedProjectId, defaultProjects);
       renderRemainingTask(selectedProject);
     }
   });
@@ -77,17 +85,13 @@ export function renderEverything() {
     if (taskName == null || taskName === "") return;
     const task = createTask(taskName);
     newTaskInput.value = null;
-    const selectedProject = projects.find(
-      (project) => project.id === selectedProjectId
-    );
+    let selectedProject = selectedArray();
     selectedProject.tasks.push(task);
     saveAndRender();
   });
 
   clearCompleteTasksButton.addEventListener("click", (e) => {
-    const selectedProject = projects.find(
-      (project) => project.id === selectedProjectId
-    );
+    let selectedProject = selectedArray();
     selectedProject.tasks = selectedProject.tasks.filter(
       (task) => !task.complete
     );
@@ -103,17 +107,19 @@ export function renderEverything() {
 }
 
 function saveAndRender() {
-  saveLocalStorage(projects, selectedProjectId);
+  saveLocalStorage(projects, selectedProjectId, defaultProjects);
   render();
 }
 
 function render() {
-  const selectedProject = projects.find(
-    (project) => project.id === selectedProjectId
-  );
+  let selectedProject = selectedArray();
+
+  renderDefaultProjects(defaultProjects, selectedProjectId);
   clearElement(projectsContainer);
+  loadDefaultProjects(defaultProjects);
   renderProjectList(projects, selectedProjectId);
 
+  console.log;
   if (selectedProjectId === null) {
     displayElement("none");
   } else {
@@ -124,4 +130,23 @@ function render() {
   }
 }
 
-renderEverything();
+function selectedArray() {
+  let selectedProject;
+  if (
+    selectedProjectId === "tasks" ||
+    selectedProjectId === "myWeek" ||
+    selectedProjectId === "myDay"
+  ) {
+    selectedProject = defaultProjects.find(
+      (project) => project.id === selectedProjectId
+    );
+  } else {
+    selectedProject = projects.find(
+      (project) => project.id === selectedProjectId
+    );
+    console.log("hello");
+  }
+  console.log(selectedProjectId);
+  console.log(selectedProject);
+  return selectedProject;
+}

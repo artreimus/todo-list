@@ -1,5 +1,6 @@
 // import "./style.css";
-import { renderEverything } from "./script.js";
+// import { renderEverything } from "./test2.js";
+import { renderEverything } from "./test2.js";
 
 renderEverything();
 // document.addEventListener("DOMContentLoaded", UI.loadHomepage);
