@@ -116,6 +116,8 @@ export function renderEverything() {
     saveAndRender();
   });
   render();
+  console.log(defaultProjects);
+  console.log(projects);
 }
 
 function saveAndRender() {
@@ -126,9 +128,10 @@ function saveAndRender() {
 function render() {
   let selectedProject = selectedArray();
 
-  renderDefaultProjects(defaultProjects, selectedProjectId);
   clearElement(projectsContainer);
+
   loadDefaultProjects(defaultProjects);
+  renderDefaultProjects(defaultProjects, selectedProjectId);
   renderProjectList(projects, selectedProjectId);
 
   if (selectedProjectId === null) {
