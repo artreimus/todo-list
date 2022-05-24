@@ -5,11 +5,11 @@ export const navButton = document.querySelector("[data-nav-button]");
 export const navContainer = document.querySelector("[data-nav-container]");
 
 export function displayElement(display) {
-  removeClassFromElement();
   projectHeader.style.display = display;
   tasksContainer.style.display = display;
   newTaskForm.style.display = display;
   projectDeleteContainer.style.display = display;
+  removeClassFromElement();
 }
 
 function removeClassFromElement() {

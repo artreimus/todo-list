@@ -116,8 +116,6 @@ export function renderEverything() {
     saveAndRender();
   });
   render();
-  console.log(defaultProjects);
-  console.log(projects);
 }
 
 function saveAndRender() {
@@ -127,16 +125,20 @@ function saveAndRender() {
 
 function render() {
   let selectedProject = selectedArray();
-
   clearElement(projectsContainer);
-
   loadDefaultProjects(defaultProjects);
   renderDefaultProjects(defaultProjects, selectedProjectId);
   renderProjectList(projects, selectedProjectId);
 
-  if (selectedProjectId === null) {
+  if (
+    selectedProjectId === null ||
+    selectedProjectId === undefined ||
+    selectedProject.length === 0
+  ) {
     displayElement("none");
+    console.log("hide");
   } else {
+    console.log("show");
     displayElement("");
     renderProjectHeader(selectedProject);
     clearElement(tasksContainer);

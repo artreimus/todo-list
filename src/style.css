@@ -325,7 +325,7 @@ i {
 }
 
 .new-task-creator {
-  display: block;
+  /* display: block; */
   border-radius: 5px;
   border: 2px solid black;
   padding: 0px 20px;
@@ -391,7 +391,6 @@ i {
 .none {
   display: none;
 }
-
 /* Media queries */
 
 @media (max-width: 650px) {
