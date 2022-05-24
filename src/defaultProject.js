@@ -28,5 +28,6 @@ export function loadDefaultProjects(defaultProjects) {
     defaultProjects.push(project);
     project = createDefaultProject("My Week", "myWeek");
     defaultProjects.push(project);
+    console.log("*");
   }
 }

@@ -5,6 +5,13 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.js",
+    // defaultProject: "./src/defaultProject.js",
+    // delete: "./src/delete.js",
+    // element: "./src/element.js",
+    // script: "./src/script.js",
+    // storage: "./src/storage.js",
+    // tasks: "./src/tasks.js",
+    // userProject: "./src/userProject.js",
   },
   devtool: "inline-source-map",
   devServer: {
@@ -19,7 +26,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
-    // clean: true,
+    clean: true,
   },
   optimization: {
     runtimeChunk: "single",

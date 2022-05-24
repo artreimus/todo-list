@@ -5,12 +5,16 @@ export const tasksContainer = document.querySelector("[data-project-body]");
 export const newTaskForm = document.querySelector("[data-new-task-form]");
 export const newTaskInput = document.querySelector("[data-new-task-input]");
 const newTaskTemplate = document.getElementById("task-template");
+export const projectContainer = document.querySelector(
+  "[data-project-preview]"
+);
 
-export function createTask(name) {
+export function Task(name, dueDate = "No Date") {
   return {
     id: Date.now().toString(),
     name: name,
     complete: false,
+    dueDate: dueDate,
   };
 }
 
@@ -35,7 +39,6 @@ export function renderTasks(selectedProject) {
   selectedProject.tasks.forEach((task) => {
     const taskElement = document.importNode(newTaskTemplate.content, true);
     const checkBox = taskElement.querySelector("input");
-    console.log(checkBox);
     checkBox.id = task.id;
     checkBox.checked = task.complete;
     const label = taskElement.querySelector("label");

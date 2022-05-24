@@ -1,5 +1,8 @@
-import { projectHeader, tasksContainer, newTaskForm } from "./projectTasks.js";
+import { projectHeader, tasksContainer, newTaskForm } from "./tasks.js";
 import { projectDeleteContainer } from "./delete.js";
+
+export const navButton = document.querySelector("[data-nav-button]");
+export const navContainer = document.querySelector("[data-nav-container]");
 
 export function displayElement(display) {
   removeClassFromElement();
@@ -10,7 +13,6 @@ export function displayElement(display) {
 }
 
 function removeClassFromElement() {
-  console.log("remove!");
   projectDeleteContainer.classList.remove("none");
   newTaskForm.classList.remove("none");
 }
@@ -43,4 +45,9 @@ export function createProjectElement(project, selectedProjectId) {
     projectElement.classList.add("active-list");
   }
   return projectElement;
+}
+
+export function toggleElement(navContainer, projectContainer) {
+  navContainer.classList.toggle("show");
+  projectContainer.classList.toggle("hide");
 }

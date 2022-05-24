@@ -13,10 +13,3 @@ export function saveLocalStorage(projects, selectedProjectId, defaultProjects) {
     JSON.stringify(defaultProjects)
   );
 }
-
-// export function saveDefaultLocalStorage(defaultProjects) {
-//   localStorage.setItem(
-//     LOCAL_STORAGE_DEFAULT_PROJECT_KEY,
-//     JSON.stringify(defaultProjects)
-//   );
-// }
